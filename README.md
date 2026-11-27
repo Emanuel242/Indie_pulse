@@ -44,3 +44,31 @@ Foram criados três modelos de wireframe, representando como o Indie Pulse dever
 ### Resultado
 
 A estrutura visual do Indie Pulse foi desenvolvida com base nos wireframes da primeira fase. A página apresenta suas principais seções e adapta sua organização de acordo com o tamanho da tela, preparando a base para as próximas etapas do projeto.
+
+Fase 3: Componentização e interatividade
+
+Objetivo: Reorganizar o projeto utilizando componentes reutilizáveis, tipagem com TypeScript e funcionalidades interativas com React.
+
+Vídeo explicativo: [Adicionar link do vídeo]
+
+O que foi feito nesta fase
+
+Divisão da página em componentes reutilizáveis, organizados em arquivos separados.
+
+Criação de tipos e interfaces com TypeScript para estruturar os dados e as propriedades dos componentes.
+
+Separação dos dados de notícias e eventos em um arquivo próprio.
+
+Utilização do método map() para renderizar dinamicamente as listas de notícias e eventos.
+
+Utilização da propriedade key para identificar os elementos das listas.
+
+Implementação do hook useState para controlar os estados da aplicação.
+
+Criação de filtros de navegação para exibir separadamente as seções de notícias, lançamentos, atualizações e estúdios.
+
+Implementação da funcionalidade de favoritos, permitindo marcar notícias e visualizar posteriormente apenas os conteúdos selecionados.
+
+Resultado
+
+O Indie Pulse passou a contar com uma estrutura de código mais organizada e dividida em componentes reutilizáveis. Também foram implementadas funcionalidades interativas utilizando React, permitindo navegar entre as diferentes seções do site e gerenciar notícias favoritas. Essa etapa aprimorou a organização e a manutenção do projeto, aplicando conceitos de componentização, tipagem e gerenciamento de estado.
