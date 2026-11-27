@@ -5,19 +5,25 @@ import NewsSection from "./components/NewsSection";
 import EventsSection from "./components/EventsSection";
 import StudiosSection from "./components/StudiosSection";
 import Footer from "./components/Footer";
-import { news, events } from "./data/content";
-import type { PageSection } from "./types";
+import { events } from "./data/content";
+import { useNews } from "./hooks/useNews";
+import type { PageSection, NewsItem } from "./types";
 import "./App.css";
 
 function App() {
-  const [favorites, setFavorites] = useState<number[]>([]);
-  const [currentPage, setCurrentPage] = useState<PageSection>("inicio");
+  const [currentPage, setCurrentPage] =
+    useState<PageSection>("inicio");
+
+  const [favorites, setFavorites] =
+    useState<number[]>([]);
+
+  const { news, loading, error } = useNews();
 
   function toggleFavorite(id: number) {
-    setFavorites((currentFavorites) =>
-      currentFavorites.includes(id)
-        ? currentFavorites.filter((favoriteId) => favoriteId !== id)
-        : [...currentFavorites, id]
+    setFavorites((previous) =>
+      previous.includes(id)
+        ? previous.filter((item) => item !== id)
+        : [...previous, id]
     );
   }
 
@@ -26,8 +32,57 @@ function App() {
   );
 
   const updateNews = news.filter(
-    (item) => item.category === "Atualizações"
+    (item) => item.category.toLowerCase() === "atualizações"
   );
+
+  const regularNews = news.filter(
+    (item) => item.category.toLowerCase() !== "atualizações"
+  );
+
+  function renderNews(items: NewsItem[], emptyMessage: string) {
+    if (loading) {
+      return (
+        <div className="panel-loading" role="status">
+          <div className="loading-spinner"></div>
+          <h3>Carregando notícias...</h3>
+          <p>Buscando as novidades do universo indie.</p>
+        </div>
+      );
+    }
+
+    if (error) {
+      return (
+        <div className="panel-error" role="alert">
+          <h3>Não foi possível carregar as notícias</h3>
+          <p>
+            Verifique sua conexão com a internet e tente novamente.
+          </p>
+          <p>{error}</p>
+
+          <button onClick={() => window.location.reload()}>
+            Tentar novamente
+          </button>
+        </div>
+      );
+    }
+
+    if (items.length === 0) {
+      return (
+        <div className="panel-empty">
+          <h3>Nenhum conteúdo encontrado</h3>
+          <p>{emptyMessage}</p>
+        </div>
+      );
+    }
+
+    return (
+      <NewsSection
+        news={items}
+        favorites={favorites}
+        onToggleFavorite={toggleFavorite}
+      />
+    );
+  }
 
   return (
     <>
@@ -37,55 +92,45 @@ function App() {
       />
 
       <main>
-        <div className="container">
-          {currentPage === "inicio" && (
-            <>
-              <HeroSection />
+        {currentPage === "inicio" && (
+          <>
+            <HeroSection />
 
-              <NewsSection
-                news={news}
-                favorites={favorites}
-                onToggleFavorite={toggleFavorite}
-              />
+            {renderNews(
+              news,
+              "Nenhuma notícia disponível no momento."
+            )}
 
-              <EventsSection events={events} />
-
-              <StudiosSection />
-            </>
-          )}
-
-          {currentPage === "noticias" && (
-            <NewsSection
-              news={news.filter(
-                (item) => item.category !== "Atualizações"
-              )}
-              favorites={favorites}
-              onToggleFavorite={toggleFavorite}
-            />
-          )}
-
-          {currentPage === "atualizacoes" && (
-            <NewsSection
-              news={updateNews}
-              favorites={favorites}
-              onToggleFavorite={toggleFavorite}
-            />
-          )}
-
-          {currentPage === "lancamentos" && (
             <EventsSection events={events} />
+            <StudiosSection />
+          </>
+        )}
+
+        {currentPage === "noticias" &&
+          renderNews(
+            regularNews,
+            "Nenhuma notícia encontrada."
           )}
 
-          {currentPage === "estudios" && <StudiosSection />}
-
-          {currentPage === "favoritos" && (
-            <NewsSection
-              news={favoriteNews}
-              favorites={favorites}
-              onToggleFavorite={toggleFavorite}
-            />
+        {currentPage === "atualizacoes" &&
+          renderNews(
+            updateNews,
+            "Nenhuma atualização disponível."
           )}
-        </div>
+
+        {currentPage === "lancamentos" && (
+          <EventsSection events={events} />
+        )}
+
+        {currentPage === "estudios" && (
+          <StudiosSection />
+        )}
+
+        {currentPage === "favoritos" &&
+          renderNews(
+            favoriteNews,
+            "Você ainda não adicionou nenhuma notícia aos favoritos."
+          )}
       </main>
 
       <Footer />
