@@ -1,3 +1,19 @@
+export type NewsItem = {
+    id: number;
+    title: string;
+    description: string;
+    category: string;
+    image: string;
+    date: string;
+};
+
+export type EventItem = {
+    id: number;
+    title: string;
+    description: string;
+    date: string;
+};
+
 export type PageSection =
     | "inicio"
     | "noticias"
@@ -6,31 +22,13 @@ export type PageSection =
     | "estudios"
     | "favoritos";
 
-export type NewsItem = {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
-    category: string;
-    date: string;
-};
-
-export type EventItem = {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
-    date: string;
-    location: string;
-};
-
 export type HeaderProps = {
     currentPage: PageSection;
     onNavigate: (page: PageSection) => void;
 };
 
 export type NewsCardProps = {
-    item: NewsItem;
+    news: NewsItem;
     isFavorite: boolean;
     onToggleFavorite: (id: number) => void;
 };
@@ -42,7 +40,7 @@ export type NewsSectionProps = {
 };
 
 export type EventCardProps = {
-    item: EventItem;
+    event: EventItem;
 };
 
 export type EventsSectionProps = {
