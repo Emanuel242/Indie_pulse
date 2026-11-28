@@ -20,6 +20,56 @@
   --green: #7ef0b0;
   --border: rgba(148, 163, 184, 0.18);
   --shadow: 0 24px 54px rgba(6, 12, 28, 0.45);
+  --header-background: rgba(5, 8, 22, 0.8);
+  --footer-background: rgba(5, 8, 22, 0.65);
+  --active-background: rgba(110, 231, 255, 0.08);
+  --tag-border: rgba(110, 231, 255, 0.36);
+  --tag-background: rgba(110, 231, 255, 0.08);
+  --button-text: #061018;
+  --accent-shadow: rgba(110, 231, 255, 0.22);
+  --hero-overlay-top: rgba(5, 8, 22, 0.1);
+  --hero-overlay-bottom: rgba(5, 8, 22, 0.38);
+  --category-background: rgba(6, 12, 19, 0.78);
+  --category-border: rgba(255, 255, 255, 0.15);
+  --favorite-background: rgba(255, 255, 255, 0.02);
+  --favorite-active-border: rgba(255, 94, 168, 0.4);
+  --favorite-active-background: rgba(255, 94, 168, 0.12);
+  --favorite-active-text: #ffb8d5;
+  --location-background: rgba(110, 231, 255, 0.05);
+  --icon-text: #081420;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f4f7fb;
+  --bg-soft: #e9eff7;
+  --panel: #ffffff;
+  --panel-strong: #ffffff;
+  --text: #172033;
+  --text-secondary: #526176;
+  --accent: #0369a1;
+  --accent-strong: #6d28d9;
+  --pink: #be185d;
+  --green: #047857;
+  --border: rgba(71, 85, 105, 0.22);
+  --shadow: 0 18px 42px rgba(30, 41, 59, 0.12);
+  --header-background: rgba(255, 255, 255, 0.88);
+  --footer-background: rgba(233, 239, 247, 0.92);
+  --active-background: rgba(3, 105, 161, 0.1);
+  --tag-border: rgba(3, 105, 161, 0.38);
+  --tag-background: rgba(3, 105, 161, 0.08);
+  --button-text: #ffffff;
+  --accent-shadow: rgba(3, 105, 161, 0.18);
+  --hero-overlay-top: rgba(15, 23, 42, 0.02);
+  --hero-overlay-bottom: rgba(15, 23, 42, 0.12);
+  --category-background: rgba(255, 255, 255, 0.9);
+  --category-border: rgba(71, 85, 105, 0.22);
+  --favorite-background: rgba(71, 85, 105, 0.04);
+  --favorite-active-border: rgba(190, 24, 93, 0.42);
+  --favorite-active-background: rgba(190, 24, 93, 0.1);
+  --favorite-active-text: #9d174d;
+  --location-background: rgba(3, 105, 161, 0.07);
+  --icon-text: #ffffff;
 }
 
 * {
@@ -39,6 +89,13 @@ body {
     radial-gradient(circle at right, rgba(139, 92, 246, 0.14), transparent 20%),
     var(--bg);
   color: var(--text);
+}
+
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(circle at top, rgba(3, 105, 161, 0.08), transparent 25%),
+    radial-gradient(circle at right, rgba(109, 40, 217, 0.07), transparent 22%),
+    var(--bg);
 }
 
 img {

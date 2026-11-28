@@ -11,8 +11,12 @@ export type EventItem = {
     id: number;
     title: string;
     description: string;
+    image: string;
     date: string;
+    location: string;
 };
+
+export type Theme = "dark" | "light";
 
 export type PageSection =
     | "inicio"
@@ -25,10 +29,12 @@ export type PageSection =
 export type HeaderProps = {
     currentPage: PageSection;
     onNavigate: (page: PageSection) => void;
+    theme: Theme;
+    onToggleTheme: () => void;
 };
 
 export type NewsCardProps = {
-    news: NewsItem;
+    item: NewsItem;
     isFavorite: boolean;
     onToggleFavorite: (id: number) => void;
 };
@@ -40,7 +46,7 @@ export type NewsSectionProps = {
 };
 
 export type EventCardProps = {
-    event: EventItem;
+    item: EventItem;
 };
 
 export type EventsSectionProps = {
