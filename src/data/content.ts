@@ -1,4 +1,4 @@
-import type { NewsItem, EventItem } from "../types";
+import type { EventItem } from "../types";
 
 
 export const events: EventItem[] = [
